@@ -7,6 +7,9 @@ from ..serializers.tour import TourSerializer
 from accounts.permissions import AllowAny
 
 class TourFeedView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+    
     def get(self, request):
         search = request.query_params.get('search')
         ordering = request.query_params.get('ordering', '-created_at')

@@ -6,7 +6,8 @@ from ..serializers.order import OrderSerializer, OrderCreateSerializer
 from accounts.permissions import AllowAny, IsAuthenticated
 
 class OrderFeedView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+    authentication_classes = []
 
     def get(self, request):
         orders = Order.objects.all()
@@ -14,7 +15,8 @@ class OrderFeedView(APIView):
         return Response(serializer.data)
     
 class OrderCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+    authentication_classes = []
 
     def post(self, request, *args, **kwargs):
         serializer = OrderCreateSerializer(data=request.data, context={'request': request})
